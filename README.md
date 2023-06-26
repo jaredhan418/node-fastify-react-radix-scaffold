@@ -1,2 +1,2 @@
 # node-short-link
- Node.js short link service
+ Node.js short link service and website.
