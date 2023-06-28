@@ -5,9 +5,11 @@
   "main": "dist/server/index.js",
   "type": "module",
   "scripts": {
+    "build": "npm run build:browser && npm run build:server",
+    "build:browser": "vite build",
     "build:server": "tsc --project tsconfig.server.json",
     "clean": "rimraf dist",
-    "start:server": "node --watch ./dist/server/index.js",
+    "start:server": "node ./dist/server/index.js",
     "watch:build:server": "npm run build:server -- --watch --incremental --sourceMap --preserveWatchOutput",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },

@@ -1,4 +1,5 @@
 import type { RequestHandler } from "express";
+import * as shortlinkService from "../services/shortlinkService.js";
 
 type CreateShortLinkBody = {
   originLink: string;
@@ -11,7 +12,10 @@ export const createShortLink: RequestHandler<
 > = (req, res) => {
   const { originLink } = req.body;
 
-  const trimOringinLink = originLink.trim();
-
-  return res.status(200).send();
+  shortlinkService.createShortLink(originLink).then(
+    (value) => {
+      res.status(200).send(value);
+    },
+    (err: any) => res.status(400).send(err)
+  );
 };
