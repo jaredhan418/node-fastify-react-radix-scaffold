@@ -1,6 +1,7 @@
 import express from "express";
 
 import { middlewares } from "./middlewares/index.js";
+import { pool } from "./db.js";
 
 const SERVER_PORT = 8079;
 
@@ -22,6 +23,7 @@ const onCloseSignal = () => {
 
   if (server) {
     console.log("closing server");
+    pool.end();
     server.close(() => {
       console.log("server closed");
       process.exit();

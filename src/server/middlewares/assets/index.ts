@@ -5,4 +5,6 @@ export function assets() {
   const router = express.Router();
 
   router.use(...browserAssets());
+
+  return router;
 }

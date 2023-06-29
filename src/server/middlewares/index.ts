@@ -10,7 +10,7 @@ export function middlewares() {
 
   router.use("/api", api());
 
-  router.use(assets);
+  router.use(assets());
 
   return router;
 }

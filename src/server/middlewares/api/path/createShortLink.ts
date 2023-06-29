@@ -14,7 +14,8 @@ export const createShortLink: RequestHandler<
 
   shortlinkService.createShortLink(originLink).then(
     (value) => {
-      res.status(200).send(value);
+      const shortlinkURL = `/api/go/${value}`;
+      res.status(200).send(shortlinkURL);
     },
     (err: any) => res.status(400).send(err)
   );

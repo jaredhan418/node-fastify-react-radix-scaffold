@@ -6,6 +6,9 @@ const browser = {
   id: "browser",
   preset: "ts-jest/presets/default-esm",
   testEnvironment: "jsdom",
+  moduleNameMapper: {
+    "^(\\.{1,2}/.*)\\.js$": "$1",
+  },
   testMatch:  ["<rootDir>/src/browser/**/*.test.{js,jsx,ts,tsx}"],
 }
 
@@ -17,6 +20,9 @@ const server = {
   id: "server",
   preset: "ts-jest/presets/default-esm",
   testEnvironment: "node",
+  moduleNameMapper: {
+    "^(\\.{1,2}/.*)\\.js$": "$1",
+  },
   testMatch:  ["<rootDir>/src/server/**/*.test.{js,ts}"],
 }
 
@@ -24,7 +30,7 @@ const server = {
  * @type { import("@jest/types").Config.InitialOptions }
  */
 export default {
-  collectCoverage: false,
+  collectCoverage: true,
   collectCoverageFrom: [
     "<rootDir>/src/**/*.{js,ts}",
     "!<rootDir>/src/**/*.test.{js,ts}"
