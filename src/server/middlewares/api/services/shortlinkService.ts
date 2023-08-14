@@ -1,5 +1,3 @@
-import { pool } from "../../../db.js";
-
 const BASE62_CHARSET =
   "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
@@ -42,7 +40,7 @@ export async function createShortLink(originLink: string) {
 
       connection.query(
         `SELECT shortlinkId, originalLink FROM short_origin_table WHERE originalLink=${connection.escape(
-          trimOriginLink
+          trimOriginLink,
         )};`,
         (err, results) => {
           if (err) return reject(err);
@@ -65,7 +63,7 @@ export async function createShortLink(originLink: string) {
                   if (!latestShortlinkId) return reject();
 
                   const shortlinkId = Base62Encode(
-                    latestShortlinkId + 1n
+                    latestShortlinkId + 1n,
                   ).substring(0, 8);
 
                   connection.query(
@@ -86,15 +84,15 @@ export async function createShortLink(originLink: string) {
 
                         return resolve(shortlinkId);
                       });
-                    }
+                    },
                   );
-                }
+                },
               );
             });
           } else {
             return resolve(results[0].shortlinkId);
           }
-        }
+        },
       );
     });
   });
@@ -113,7 +111,7 @@ export async function getOriginLinkById(shortlinkId: string) {
       connection.query(
         `SELECT originalLink FROM short_origin_table WHERE shortlinkId=${connection.escape(
           shortlinkId,
-          true
+          true,
         )};`,
         (err, results) => {
           if (err) return reject();
@@ -121,7 +119,7 @@ export async function getOriginLinkById(shortlinkId: string) {
           if (results.length === 0) return reject();
 
           return resolve(results[0].originalLink);
-        }
+        },
       );
     });
   });

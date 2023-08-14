@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import { App } from "./components/app/component.js";
 
 let mountingDiv = document.body.getElementsByClassName(
-  "site--app"
+  "site--app",
 )[0] as HTMLDivElement;
 if (mountingDiv == null) {
   mountingDiv = document.createElement("div");

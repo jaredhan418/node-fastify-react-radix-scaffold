@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model short_origin_table {
+  shortlinkId  String    @db.VarChar(8)
+  originalLink String    @db.Text
+  createTime   DateTime? @db.Timestamp(0)
+  recordid     String?   @default("1") @db.VarChar(100)
+
+  @@ignore
+}

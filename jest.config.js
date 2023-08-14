@@ -30,7 +30,7 @@ const server = {
  * @type { import("@jest/types").Config.InitialOptions }
  */
 export default {
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     "<rootDir>/src/**/*.{js,ts}",
     "!<rootDir>/src/**/*.test.{js,ts}"

@@ -1,18 +1,16 @@
 import express from "express";
 
-import { createShortLink } from "./path/createShortLink.js";
-import { getOriginLinkById } from "./path/getOriginLinkById.js";
+import { initOpenAPI } from "./openapi/init.js";
 
-export function api() {
+export async function api() {
   const router = express.Router();
 
   // healthy check
   router.get("/", (req, res) => res.sendStatus(204));
 
-  router.post("/createShortLink", createShortLink);
-  router.get("/go/:shortLinkId", getOriginLinkById);
+  const openapi = await initOpenAPI();
 
-  router.all("*", (req, res) => res.sendStatus(404));
+  router.all("/*", openapi);
 
   return [router];
 }

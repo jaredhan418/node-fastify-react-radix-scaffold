@@ -8,6 +8,6 @@ export function flushPromisesAndTimers(): Promise<void> {
       new Promise<void>((resolve) => {
         setTimeout(resolve, 1);
         jest.runAllTimers();
-      })
+      }),
   );
 }
