@@ -13,7 +13,7 @@
     "husky:pre-commit": "npx --no lint-staged",
     "start:server": "node -r dotenv/config ./dist/server/index.js",
     "watch:build:server": "npm run build:server -- --watch --incremental --sourceMap --preserveWatchOutput",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "vitest run",
     "prepare": "npm run clean && npx --no prisma generate && npm run build && npx --no husky install"
   },
   "keywords": [
