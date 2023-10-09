@@ -1,12 +1,12 @@
-import { describe, expect, it, jest } from "@jest/globals";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
+import { describe, expect, it, vi } from "vitest";
 
 import { flushPromisesAndTimers } from "../../shared/test-utils/utils.js";
 
-const mockFetchShortlink = jest.fn<(originLink: string) => Promise<string>>();
+const mockFetchShortlink = vi.fn<never, Promise<string>>();
 
-jest.unstable_mockModule("../../services/index.js", () => {
+vi.mock("../../services/index.js", () => {
   return { fetchShortlink: mockFetchShortlink };
 });
 
@@ -31,7 +31,7 @@ describe("App", () => {
     const textInput = screen.getByAltText("original link input");
     const form = screen.getByRole("form");
 
-    fireEvent.keyDown(textInput, { key: "A", code: "KeyA" });
+    fireEvent.keyDown(textInput, { code: "KeyA", key: "A" });
 
     fireEvent.submit(form);
 

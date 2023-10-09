@@ -1,13 +1,13 @@
-import { jest } from "@jest/globals";
 import { act } from "@testing-library/react";
+import { vi } from "vitest";
 
 export function flushPromisesAndTimers(): Promise<void> {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
   return act(
     () =>
       new Promise<void>((resolve) => {
         setTimeout(resolve, 1);
-        jest.runAllTimers();
+        vi.runAllTimers();
       }),
   );
 }

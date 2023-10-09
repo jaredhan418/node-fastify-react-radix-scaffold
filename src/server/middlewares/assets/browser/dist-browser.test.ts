@@ -1,8 +1,8 @@
-import { afterEach, beforeEach, describe, expect, it } from "@jest/globals";
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
 import supertest, { type SuperTest, type Test } from "supertest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { assets } from "./dist-browser.js";
 
 describe("Server assets", () => {
