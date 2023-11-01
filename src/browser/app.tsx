@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 
 import { App } from "./components/app/component.js";
 
+import "./styles.css";
+
 let mountingDiv = document.body.getElementsByClassName(
   "site--app",
 )[0] as HTMLDivElement;

@@ -30,7 +30,7 @@ export const initOpenAPI = async () => {
       err: any,
       req: Request,
       res: Response,
-      next: NextFunction
+      next: NextFunction,
     ) => {
       if (err.status === 401) {
         res.status(401).send(err);
@@ -43,11 +43,11 @@ export const initOpenAPI = async () => {
   app.use("/swagger", swaggerUi.serve);
   app.get(
     "/swagger",
-    swaggerUi.setup(null as any, {
+    swaggerUi.setup(undefined, {
       swaggerOptions: {
         url: "/api/swagger.json",
       },
-    })
+    }),
   );
 
   app.use("/*", (req, res) => res.send(404));

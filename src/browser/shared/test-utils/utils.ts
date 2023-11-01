@@ -11,3 +11,12 @@ export function flushPromisesAndTimers(): Promise<void> {
       }),
   );
 }
+
+export function asyncAct() {
+  return act(
+    () =>
+      new Promise<void>((resolve) => {
+        setTimeout(resolve, 0);
+      }),
+  );
+}
