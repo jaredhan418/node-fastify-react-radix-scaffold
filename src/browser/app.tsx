@@ -13,5 +13,6 @@ if (mountingDiv == null) {
   mountingDiv.setAttribute("class", "site--app");
   document.body.appendChild(mountingDiv);
 }
+
 const root = createRoot(mountingDiv);
 root.render(<App />);
