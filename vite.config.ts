@@ -1,6 +1,6 @@
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
 import dotenv from "dotenv";
+import { defineConfig } from "vite";
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -14,11 +14,6 @@ export default defineConfig({
   build: {
     outDir: `${__dirname}/dist/browser`,
     rollupOptions: {
-      output: {
-        manualChunks: {
-          react: ["react", "react-dom"],
-        },
-      },
       treeshake: "safest",
     },
   },

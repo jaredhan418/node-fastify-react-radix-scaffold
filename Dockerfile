@@ -32,4 +32,5 @@ COPY --from=builder /app/dist ./dist
 COPY --from=deps /app/package.json .
 COPY --from=deps /app/node_modules ./node_modules
 
+USER nonroot
 CMD ["-r", "dotenv/config", "./dist/server/index.js"]

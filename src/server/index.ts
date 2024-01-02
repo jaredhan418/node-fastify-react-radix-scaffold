@@ -1,31 +1,44 @@
-import express from "express";
+import Fastify from "fastify";
+import { pino } from "pino";
 
-import { middlewares } from "./middlewares/index.js";
 import { prisma } from "./db/index.js";
+import { registeRootPlugins } from "./plugins/index.js";
+import { getLoggerOptions } from "./utils/logger-utils.js";
+
+const logger = pino({
+  name: "server start",
+});
 
 const SERVER_PORT = 8079;
 
-const app = express();
+const fastify = Fastify({
+  logger: getLoggerOptions(),
+});
 
-app.use(await middlewares());
+await registeRootPlugins(fastify);
 
-const onServerListen = (...args: unknown[]) => {
-  if (args.length !== 0) {
-    return console.log("server is listening. here is some args", args);
+await fastify.ready();
+
+const onFastServerListen = (err: null | Error, address: string) => {
+  if (err) {
+    return logger.info(
+      " Fast server met error. here is some error message",
+      err,
+    );
   }
-  return console.log(`server is listening at ${SERVER_PORT}!`);
+  return logger.info(`Fast server is listening at ${address}!`);
 };
 
-const server = app.listen(SERVER_PORT, onServerListen);
+fastify.listen({ port: SERVER_PORT }, onFastServerListen);
 
 const onCloseSignal = async () => {
-  console.log("signal received");
+  logger.info("signal received");
 
-  if (server) {
-    console.log("closing server");
+  if (fastify) {
+    logger.info("closing fast server");
     await prisma.$disconnect();
-    server.close(() => {
-      console.log("server closed");
+    fastify.close(() => {
+      logger.info("fast server closed");
       process.exit();
     });
   }

@@ -5,4 +5,4 @@
     "target": "ES2022",
   },
   "extends": "../../tsconfig.json"
-} 
+}
