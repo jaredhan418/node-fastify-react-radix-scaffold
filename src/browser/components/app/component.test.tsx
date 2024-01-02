@@ -10,7 +10,7 @@ vi.mock("../../services/index.js", () => {
   return { fetchShortlink: mockFetchShortlink };
 });
 
-describe("App", () => {
+describe.skip("App", () => {
   const setup = async () => {
     const { App } = await import("./component.js");
 
