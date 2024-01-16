@@ -1,16 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { flushPromisesAndTimers } from "../../shared/test-utils/utils.js";
 
-const mockFetchShortlink = vi.fn<never, Promise<string>>();
-
-vi.mock("../../services/index.js", () => {
-  return { fetchShortlink: mockFetchShortlink };
-});
-
-describe.skip("App", () => {
+describe("App", () => {
   const setup = async () => {
     const { App } = await import("./component.js");
 
@@ -20,23 +14,18 @@ describe.skip("App", () => {
   it("render form", async () => {
     await setup();
 
-    expect(screen.getByRole("form")).toBeTruthy();
+    expect(screen.getByRole("heading")).toBeTruthy();
   });
 
-  it("submit origin link and get short link", async () => {
-    mockFetchShortlink.mockResolvedValueOnce("/api/go/1");
-
+  it("navigate to table page", async () => {
     await setup();
 
-    const textInput = screen.getByAltText("original link input");
-    const form = screen.getByRole("form");
+    const link = screen.getByRole("link");
 
-    fireEvent.keyDown(textInput, { code: "KeyA", key: "A" });
-
-    fireEvent.submit(form);
+    fireEvent.click(link);
 
     await flushPromisesAndTimers();
 
-    expect(screen.getByRole("link").innerHTML).toEqual("/api/go/1");
+    expect(screen.getByRole("table")).toBeTruthy();
   });
 });
