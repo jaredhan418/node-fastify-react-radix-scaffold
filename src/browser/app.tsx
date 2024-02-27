@@ -2,8 +2,11 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 
 import { App } from "./components/app/component.js";
+import { initI18n } from "./shared/i18n/index.js";
 
 import "./styles.css";
+
+initI18n();
 
 let mountingDiv = document.body.getElementsByClassName(
   "site--app",

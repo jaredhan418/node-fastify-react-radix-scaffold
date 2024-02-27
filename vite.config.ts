@@ -18,6 +18,9 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  preview: {
+    port: 8081,
+  },
   root: "./src/browser",
   server: {
     host: true,

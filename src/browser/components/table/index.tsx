@@ -1,44 +1,45 @@
-import React from "react";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 type Person = {
+  age: number;
   firstName: string;
   lastName: string;
-  age: number;
-  visits: number;
-  status: string;
   progress: number;
+  status: string;
+  visits: number;
 };
 
 const defaultData: Person[] = [
   {
+    age: 24,
     firstName: "tanner",
     lastName: "linsley",
-    age: 24,
-    visits: 100,
-    status: "In Relationship",
     progress: 50,
+    status: "In Relationship",
+    visits: 100,
   },
   {
+    age: 40,
     firstName: "tandy",
     lastName: "miller",
-    age: 40,
-    visits: 40,
-    status: "Single",
     progress: 80,
+    status: "Single",
+    visits: 40,
   },
   {
+    age: 45,
     firstName: "joe",
     lastName: "dirte",
-    age: 45,
-    visits: 20,
-    status: "Complicated",
     progress: 10,
+    status: "Complicated",
+    visits: 20,
   },
 ];
 
@@ -52,17 +53,17 @@ const columns = [
   columnHelper.accessor((row) => row.lastName, {
     id: "lastName",
     cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
     footer: (info) => info.column.id,
+    header: () => <span>Last Name</span>,
   }),
   columnHelper.accessor("age", {
-    header: () => "Age",
     cell: (info) => info.renderValue(),
     footer: (info) => info.column.id,
+    header: () => "Age",
   }),
   columnHelper.accessor("visits", {
-    header: () => <span>Visits</span>,
     footer: (info) => info.column.id,
+    header: () => <span>Visits</span>,
   }),
   columnHelper.accessor("status", {
     header: "Status",
@@ -75,11 +76,22 @@ const columns = [
 ];
 
 export function Table() {
-  const [data, setData] = React.useState(() => [...defaultData]);
+  const [data] = React.useState(() => [...defaultData]);
+  const { i18n, t } = useTranslation();
+
+  useEffect(() => {
+    console.log("useEffect with i18n");
+  }, [i18n]);
+
+  useEffect(() => {
+    console.log("useEffect with t");
+  }, [t]);
+
+  return i18n.t("text");
 
   const table = useReactTable({
-    data,
     columns,
+    data,
     getCoreRowModel: getCoreRowModel(),
   });
 
