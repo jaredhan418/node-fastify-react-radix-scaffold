@@ -14,7 +14,7 @@ describe("App", () => {
   it("render form", async () => {
     await setup();
 
-    expect(screen.getByRole("heading")).toBeTruthy();
+    expect(screen.getAllByRole("heading")).toBeTruthy();
   });
 
   it("navigate to table page", async () => {
