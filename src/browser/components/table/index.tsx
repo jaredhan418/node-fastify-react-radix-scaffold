@@ -4,8 +4,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import React, { useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import React from "react";
 
 type Person = {
   age: number;
@@ -77,17 +76,6 @@ const columns = [
 
 export function Table() {
   const [data] = React.useState(() => [...defaultData]);
-  const { i18n, t } = useTranslation();
-
-  useEffect(() => {
-    console.log("useEffect with i18n");
-  }, [i18n]);
-
-  useEffect(() => {
-    console.log("useEffect with t");
-  }, [t]);
-
-  return i18n.t("text");
 
   const table = useReactTable({
     columns,
