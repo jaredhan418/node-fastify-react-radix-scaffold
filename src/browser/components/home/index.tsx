@@ -1,7 +1,7 @@
 import { Button, Flex, Text } from "@radix-ui/themes";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router";
 
 export function Home() {
   const { i18n, t } = useTranslation();

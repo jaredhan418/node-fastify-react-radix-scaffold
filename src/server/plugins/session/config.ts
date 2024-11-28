@@ -1,5 +1,5 @@
 import type { FastifySessionOptions } from "@fastify/session";
-import RedisStore from "connect-redis";
+import { RedisStore } from "connect-redis";
 import { Redis } from "ioredis";
 
 import {

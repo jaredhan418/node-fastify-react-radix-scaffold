@@ -1,6 +1,6 @@
 import { Theme } from "@radix-ui/themes";
 import React from "react";
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router";
 
 import { router } from "./router/index.js";
 
