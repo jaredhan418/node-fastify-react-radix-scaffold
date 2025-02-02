@@ -17,7 +17,7 @@ const redisConfig = {
 };
 
 export function sessionConfig(): FastifySessionOptions {
-  const redis = new Redis(redisConfig);
+  // const redis = new Redis(redisConfig);
 
   return {
     cookie: {
@@ -30,6 +30,6 @@ export function sessionConfig(): FastifySessionOptions {
     rolling: false,
     saveUninitialized: false,
     secret: getSessionSecret(),
-    store: new RedisStore({ client: redis }),
+    // store: new RedisStore({ client: redis }),
   };
 }

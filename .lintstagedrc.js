@@ -3,7 +3,7 @@
  */
 export default {
   "*.{js,jsx,ts,tsx}": [
-    "oxlint --fix",
+    "eslint --fix",
     "prettier --write --ignore-unknown",
     "sortier --ignore-unknown",
   ],
