@@ -1,4 +1,4 @@
-FROM bitnami/node:22.15.0 AS builder
+FROM bitnami/node:22 AS builder
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ RUN npm ci
 RUN npm run build
 
 ## install deps
-FROM bitnami/node:22.15.0 AS deps
+FROM bitnami/node:22 AS deps
 
 WORKDIR /app
 
@@ -24,7 +24,7 @@ RUN npx prisma generate
 COPY ./.dockerignore ./dist/broswer/
 
 ## runtime
-FROM bitnami/node:22.15.0
+FROM bitnami/node:22
 
 WORKDIR /app
 
