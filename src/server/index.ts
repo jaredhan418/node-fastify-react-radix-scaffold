@@ -21,9 +21,9 @@ await fastify.ready();
 
 const onFastServerListen = (err: null | Error, address: string) => {
   if (err) {
-    return logger.info(
-      " Fast server met error. here is some error message",
-      err,
+    return logger.info<any>(
+      "Fast server met error. here is some error message",
+      err.message,
     );
   }
   return logger.info(`Fast server is listening at ${address}!`);
