@@ -6,7 +6,7 @@
     "importHelpers": false,
     "isolatedModules": true,
     "jsx": "react",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "outDir": "dist",
