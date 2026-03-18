@@ -13,9 +13,6 @@ dotenv.config();
 export default defineConfig({
   build: {
     outDir: `${__dirname}/dist/browser`,
-    rollupOptions: {
-      treeshake: "safest",
-    },
   },
   plugins: [react()],
   preview: {
