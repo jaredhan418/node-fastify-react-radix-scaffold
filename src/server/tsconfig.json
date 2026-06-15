@@ -2,7 +2,8 @@
   "compilerOptions": {
     "moduleResolution": "Node16",
     "module": "Node16",
-    "target": "ES2022",
+    "target": "ES2024",
+    "rootDir": "../.."
   },
   "extends": "../../tsconfig.json"
 }
